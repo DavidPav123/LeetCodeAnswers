@@ -2,7 +2,7 @@ class Solution:
     def reverseStr(self, s: str, k: int) -> str:
         if len(set(s)) == 1:
             return s
-        
+
         cur_index = 0
         k2 = k * 2
         sub_strings = ""
