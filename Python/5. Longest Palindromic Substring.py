@@ -1,14 +1,20 @@
+from itertools import combinations
+
+
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         if s == s[::-1]:
             return s
         else:
-            for i in range(len(s)):
-                cur_str = ""
-                for j in range(len(s), i,-1):
-                    cur_str = s[i:len(s)]
-                    if cur_str == cur_str[::-1]:
-                            return cur_str
-                                                
-
-
+            final_str = ""
+            for i in range(len(s), 0, -1):
+                test = [
+                    com_str
+                    for com_str in [
+                        combo for combo in combinations(s, i) if combo == combo[::-1]
+                    ]
+                    if "".join(com_str) in s
+                ]
+                if len(test) > 0:
+                    return "".join(test[0])
+            return final_str
